@@ -1,4 +1,4 @@
-def main(self):
+def main():
   print "This worked"
 
 main();
