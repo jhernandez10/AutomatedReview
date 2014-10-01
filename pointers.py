@@ -30,9 +30,7 @@ def value_question():
 if __name__ == "__main__":
 	total = 2
 	correct = 0
-	correct = correct + instantiation_correct1('int')
-	print str(correct)
-	correct = correct + value_question()
-	print str(correct)
+	correct += instantiation_correct1('int')
+	correct += value_question()
 
 	print 'You got ' + str(correct/total * 100) + "% correct"

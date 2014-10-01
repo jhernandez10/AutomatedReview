@@ -12,7 +12,8 @@ def print_menu(files):
 	count = 0
 	for file in files:
 		size = len(file)
-		if(file[0] != '.' and file[size -2:size] == 'py' and file != 'startQuizes.py'):
+		#and file[size -2:size] == 'py' 
+		if(file[0] != '.' and file != 'startQuizes.py' and (file[size -2:size] == 'py' or file[size -2:size] == 'ut')):
 			print("\t%d)%s"%(count,file))
 			directory.append(file)
 			#__import__(file)
@@ -24,7 +25,11 @@ def run_Program(choice,directory):
 	quiz = directory[choice]
 	size = len(quiz)
 
-	execfile(os.path.realpath('pointers.py'))
+	if(quiz[size -2:size] == 'py'):
+		execfile(os.path.realpath(quiz))
+	elif(quiz[size -2:size] == 'ut'):
+		Popen(os.path.realpath(quiz))
+
 
 
 
@@ -32,19 +37,22 @@ if __name__ == "__main__":
 	path = os.getcwd()
 	files = os.listdir(path)
 
-	directory = print_menu(files)
+	Popen([os.path.realpath('make'),'make'],shell=True)
 
+	yes =''
+	no = ''
 
 	more = True
 	while(more):
 		
 		try:
+			directory = print_menu(files)
 			choice = input("\nWhat subject do you want to go over?(Enter number):")
 			choice = int(choice)
 			if(choice == -1):
 				break
 			elif( choice >= 0 and choice < len(directory)):
-				run_Program(choice,directory)
+				yes = run_Program(choice,directory)
 		except Exception as e:
 			print e
 			print "Not a valid input"

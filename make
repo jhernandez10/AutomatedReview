@@ -1,0 +1,1 @@
+g++-4.7 -pedantic -std=c++11 -Wall pointerFun.c++ -o pointerFun.out
