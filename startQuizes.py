@@ -25,11 +25,19 @@ def run_Program(choice,directory):
 	quiz = directory[choice]
 	size = len(quiz)
 
+	#theses need to be defined so parent python process doesn't complain about it not being defined
+	#any response needs to be defined unless it is a defined value in python
+	#need to take some time later to figure out how to get around this to make requirement less stringent
+	yes = 'yes'
+	no = 'no'
+	true = 'true'
+	false = 'false'
+
 	if(quiz[size -2:size] == 'py'):
 		execfile(os.path.realpath(quiz))
 	elif(quiz[size -2:size] == 'ut'):
 		process = Popen(os.path.realpath(quiz),stdin = PIPE)
-		
+
 		while(process.poll() == None):
 			process.communicate(input())
 
@@ -39,10 +47,8 @@ if __name__ == "__main__":
 	files = os.listdir(path)
 
 	#this is safe becuase I am not using user input to run shell commands
-	Popen([os.path.realpath('make'),'make'],shell=True)
-
-	yes =''
-	no = ''
+	process = Popen([os.path.realpath('make'),'make'],shell=True)
+	process.wait()
 
 	more = True
 	while(more):
