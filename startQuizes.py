@@ -1,5 +1,5 @@
 import os
-from subprocess import Popen,PIPE
+from subprocess import Popen,PIPE,check_output
 
 
 # process = Popen(['python', 'pointers.py'],stdout=PIPE)
@@ -28,15 +28,17 @@ def run_Program(choice,directory):
 	if(quiz[size -2:size] == 'py'):
 		execfile(os.path.realpath(quiz))
 	elif(quiz[size -2:size] == 'ut'):
-		Popen(os.path.realpath(quiz))
-
-
+		process = Popen(os.path.realpath(quiz),stdin = PIPE)
+		
+		while(process.poll() == None):
+			process.communicate(input())
 
 
 if __name__ == "__main__":
 	path = os.getcwd()
 	files = os.listdir(path)
 
+	#this is safe becuase I am not using user input to run shell commands
 	Popen([os.path.realpath('make'),'make'],shell=True)
 
 	yes =''
