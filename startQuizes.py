@@ -15,12 +15,16 @@ def print_menu(files):
 		if(file[0] != '.' and file[size -2:size] == 'py' and file != 'startQuizes.py'):
 			print("\t%d)%s"%(count,file))
 			directory.append(file)
+			#__import__(file)
 			count += 1
 	print("\tEnter number, -1 to exit")
 	return directory
 
-def run_Program(choice,directory,type):
-	pass
+def run_Program(choice,directory):
+	quiz = directory[choice]
+	size = len(quiz)
+
+	execfile(os.path.realpath('pointers.py'))
 
 
 
@@ -40,8 +44,9 @@ if __name__ == "__main__":
 			if(choice == -1):
 				break
 			elif( choice >= 0 and choice < len(directory)):
-				print "run the programs here"
+				run_Program(choice,directory)
 		except Exception as e:
+			print e
 			print "Not a valid input"
 		# except NameError as n:
 		# 	print "Not valid input\n\n"
