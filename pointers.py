@@ -26,7 +26,7 @@ def value_question():
 	print 'assert(*j == 2)'
 	answer = input('Will this assertion fail?(yes or no):')
 
-	if(answer):
+	if( not answer):
 		print 'Correct!\n'
 		return 1
 	print 'Incorrect dereferencing a correctly assigned pointer gives you the value it is pointing at\n'
