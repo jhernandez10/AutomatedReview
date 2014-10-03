@@ -40,6 +40,7 @@ def run_Program(choice,directory):
 
 		while(process.poll() == None):
 			process.communicate(input())
+			process.wait()
 
 
 if __name__ == "__main__":
@@ -64,9 +65,5 @@ if __name__ == "__main__":
 		except Exception as e:
 			print e
 			print "Not a valid input"
-		# except NameError as n:
-		# 	print "Not valid input\n\n"
-		# except SyntaxError as s:
-		# 	print "Not valid input\n\n"
 		
 
